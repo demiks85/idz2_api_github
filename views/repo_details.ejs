@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= repo.name %> - Details</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Підключаємо файл стилів -->
+</head>
+<body>
+    <h1><%= repo.name %></h1>
+    <p><%= repo.description %></p>
+    <p><a href="<%= repo.html_url %>"><%= repo.html_url %></a></p>
+    <p>Created at: <%= new Date(repo.created_at).toLocaleDateString() %></p>
+    <p>Updated at: <%= new Date(repo.updated_at).toLocaleDateString() %></p>
+    <p>Language: <%= repo.language %></p>
+    
+    <h2>Commits:</h2>
+    <ul>
+        <% commits.forEach(commit => { %>
+            <li>
+                <p>Date: <%= new Date(commit.commit.author.date).toLocaleString() %></p>
+                <p>Hash: <%= commit.sha %></p>
+                <p>Message: <%= commit.commit.message %></p>
+            </li>
+        <% }) %>
+    </ul>
+    
+    <a href="/">Back to search</a>
+</body>
+</html>

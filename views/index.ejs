@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub Repository Info</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Підключаємо файл стилів -->
+</head>
+<body>
+    <h1>GitHub Repository Info</h1>
+    <!-- Форма для введення імені користувача GitHub -->
+    <form method="post" action="/repos">
+        <label for="username">GitHub Username:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit">Get Repos</button>
+    </form>
+    
+    <!-- Виведення переліку репозиторіїв, якщо вони є -->
+    <% if (typeof repos !== 'undefined') { %>
+        <h2>Repositories for <%= username %>:</h2>
+        <ul>
+            <% repos.forEach(repo => { %>
+                <li><a href="/repo/<%= username %>/<%= repo.name %>"><%= repo.name %></a></li>
+            <% }) %>
+        </ul>
+    <% } %>
+</body>
+</html>
